@@ -35,23 +35,21 @@ void CalibrationGSISimRunAction::BeginOfRunAction(const G4Run* aRun){
 
     start = time(NULL);     //start the timer clock to calculate run times
 
-    theRunTree = new TTree("theRunTree","Tree_Information");
+    theRunTree = new TTree("IP","Tree_Information");
 
     // create the branch for each event.
     // Be careful of the data structure here!  /F is a float  /I is an integer
-    RunBranch = theRunTree->Branch("IncidentE", &Stats.IncidentE, "IncidentE/F");
-    RunBranch = theRunTree->Branch("Deposit", &Stats.Deposit, "Deposit/F");
-    //RunBranch = theRunTree->Branch("Deposit_Resolution", &Stats.Deposit_with_resolution, "Deposit_Resolution/F");
-    RunBranch = theRunTree->Branch("EBremCreation", "vector<float>", &Stats.EBremCreation);
-    RunBranch = theRunTree->Branch("EBremPlaque", "vector<float>", &Stats.EBremPlaque);
-    //RunBranch = theRunTree->Branch("ENeutronCreation", "vector<float>", &Stats.ENeutronCreation);
-    //RunBranch = theRunTree->Branch("ENeutronPlaque", "vector<float>", &Stats.ENeutronPlaque);
-    // RunBranch = theRunTree->Branch("Interaction", &Stats.Interaction, "Interaction/I");
-    // RunBranch = theRunTree->Branch("E_Gamma_Creation", "vector<float>", &Stats.EgammaCreation);
-    // RunBranch = theRunTree->Branch("E_Gamma_Deposit", "vector<float>", &Stats.EgammaDeposit);
-    // RunBranch = theRunTree->Branch("E_Elec_Creation", "vector<float>", &Stats.EelecCreation);
-    //RunBranch = theRunTree->Branch("E_elec_Deposit", "vector<float>", &Stats.EelecDeposit);
-    //RunBranch = theRunTree->Branch("Position_Deposit", "vector<float>", &Stats.PositionDeposit);
+    RunBranch = theRunTree->Branch("IncidentElectron", "vector<float>", &Stats.IncidentElectron);
+    RunBranch = theRunTree->Branch("IncidentGamma", "vector<float>", &Stats.IncidentGamma);
+    //RunBranch = theRunTree->Branch("Deposit", &Stats.Deposit, "Deposit/F");
+    //RunBranch = theRunTree->Branch("DepositEff", &Stats.DepositEff, "DepositEff/F");
+    RunBranch = theRunTree->Branch("DepositTot", &Stats.DepositTot, "DepositTot/F");
+    RunBranch = theRunTree->Branch("DepositEffTot", &Stats.DepositEffTot, "DepositEffTot/F");
+    RunBranch = theRunTree->Branch("Deposit", "vector<float>", &Stats.Deposit);
+    RunBranch = theRunTree->Branch("DepositEff", "vector<float>", &Stats.DepositEff);
+    RunBranch = theRunTree->Branch("PositionX", "vector<float>", &Stats.PositionX);
+    RunBranch = theRunTree->Branch("PositionY", "vector<float>", &Stats.PositionY);
+    RunBranch = theRunTree->Branch("PositionZ", "vector<float>", &Stats.PositionZ);
 
     //set the random seed to the CPU clock
   //G4Random::setTheEngine(new CLHEP::HepJamesRandom);

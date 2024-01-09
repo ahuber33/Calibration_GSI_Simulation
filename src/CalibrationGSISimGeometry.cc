@@ -171,7 +171,7 @@ G4VPhysicalVolume* CalibrationGSISimGeometry::Construct( ){
   // Create World Volume
   // This is just a big box to place all other logical volumes inside
   G4Box *SolidWorld = new G4Box("SolidWorld", 110*cm, 110*cm, 110*cm );
-  LogicalWorld = new G4LogicalVolume(SolidWorld, VacuumWorld,"LogicalWorld",0,0,0);
+  LogicalWorld = new G4LogicalVolume(SolidWorld, Air,"LogicalWorld",0,0,0);
   LogicalWorld->SetVisAttributes(invis);
 
   // Place the world volume: center of world at origin (0,0,0)
@@ -188,6 +188,7 @@ G4VPhysicalVolume* CalibrationGSISimGeometry::Construct( ){
   LogicalIP4 = Geom->GetMSStack4();
   LogicalTable = Geom->GetTable();
   LogicalSourceHolder = Geom->GetSourceHolder();
+  LogicalSourcePlastic = Geom->GetSourcePlastic();
 
 
   // Set colors of various block materials
@@ -197,6 +198,7 @@ G4VPhysicalVolume* CalibrationGSISimGeometry::Construct( ){
   LogicalIP4->SetVisAttributes(black);
   LogicalTable->SetVisAttributes(gray);
   LogicalSourceHolder->SetVisAttributes(cyan);
+  LogicalSourcePlastic->SetVisAttributes(gray);
 
 
 
@@ -212,27 +214,19 @@ G4VPhysicalVolume* CalibrationGSISimGeometry::Construct( ){
   // Various Positioning values
   //***********************
 
-  float distance=Stack_IP_pos_ini;
+  G4double distance=Stack_IP_pos_ini;
 
   PhysicalTable = new G4PVPlacement(G4Transform3D
-    (DontRotate,G4ThreeVector(0*mm,0.*mm, -30*mm)),
+    (DontRotate,G4ThreeVector(0*mm,0.*mm, -30.08*mm)),
     LogicalTable,"Table",
     LogicalWorld,false,0);
 
-  PhysicalIP1 = new G4PVPlacement(G4Transform3D
-    (DontRotate,G4ThreeVector(0*mm,0.*mm, distance)),
-    LogicalIP1,"IP1",
-    LogicalWorld,false,0);
-
-    distance += IPa1_z/2 + IPa2_z/2;
-
-
-    PhysicalIP2 = new G4PVPlacement(G4Transform3D
+    PhysicalIP4 = new G4PVPlacement(G4Transform3D
       (DontRotate,G4ThreeVector(0*mm,0.*mm, distance)),
-      LogicalIP2,"IP2_Sensitive",
+      LogicalIP4,"IP4",
       LogicalWorld,false,0);
 
-      distance += IPa2_z/2 + IPa3_z/2;
+      distance += IPa4_z/2 + IPa3_z/2;
 
 
       PhysicalIP3 = new G4PVPlacement(G4Transform3D
@@ -240,33 +234,53 @@ G4VPhysicalVolume* CalibrationGSISimGeometry::Construct( ){
         LogicalIP3,"IP3",
         LogicalWorld,false,0);
 
+        distance += IPa3_z/2 + IPa2_z/2;
 
-        distance += IPa3_z/2 + IPa4_z/2;
 
-
-        PhysicalIP4 = new G4PVPlacement(G4Transform3D
+        PhysicalIP2 = new G4PVPlacement(G4Transform3D
           (DontRotate,G4ThreeVector(0*mm,0.*mm, distance)),
-          LogicalIP4,"IP4",
+          LogicalIP2,"IP2_Sensitive",
           LogicalWorld,false,0);
 
 
-          distance += IPa4_z/2 + SourceHolderThickness/2;
+          distance += IPa2_z/2 + IPa1_z/2;
+          //distance += IPa2_z/2;
 
 
-          PhysicalSourceHolder = new G4PVPlacement(G4Transform3D
+          PhysicalIP1 = new G4PVPlacement(G4Transform3D
             (DontRotate,G4ThreeVector(0*mm,0.*mm, distance)),
-            LogicalSourceHolder,"SourceHolder",
+            LogicalIP1,"IP1",
             LogicalWorld,false,0);
 
 
-    #else
+            distance += IPa1_z/2 + SourceHolderThickness/2 + 1.5;
+            //distance += SourceHolderThickness/2 + 1.5;
 
-    #endif
+            PhysicalSourceHolder = new G4PVPlacement(G4Transform3D
+              (DontRotate,G4ThreeVector(0*mm,0*mm, distance)),
+              LogicalSourceHolder,"SourceHolder",
+              LogicalWorld,false,0);
+
+              //distance = distance - SourceHolderThickness/2 - 1.5 + 1.5045;
+              distance = distance - IPa1_z/2 - SourceHolderThickness/2 - 1.5 + 1.5045;
+
+
+              PhysicalSourcePlastic = new G4PVPlacement(G4Transform3D
+                (DontRotate,G4ThreeVector(0*mm,0*mm, distance)),
+                LogicalSourcePlastic,"SourcePlastic",
+                LogicalWorld,false,0);
+
+
+
+
+              #else
+
+              #endif
 
 
 
 
 
-    // Returns world with everything in it and all properties set
-    return PhysicalWorld;
-  }
+              // Returns world with everything in it and all properties set
+              return PhysicalWorld;
+            }

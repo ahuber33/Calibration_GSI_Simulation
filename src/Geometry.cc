@@ -167,7 +167,7 @@ G4LogicalVolume *Geometry::GetMSStack3(){
 
 G4LogicalVolume *Geometry::GetMSStack4(){
 
-  Material = scintProp->GetMaterial("Polyester");
+  Material = scintProp->GetMaterial("Base");
 
   G4Box *Box = new G4Box   ("Box",             //its name
             IPLength/2, IPWidth/2, IPa4_z/2);    //its size
@@ -192,10 +192,38 @@ G4LogicalVolume *Geometry::GetTable(){
 
 G4LogicalVolume *Geometry::GetSourceHolder(){
 
-  Material = scintProp->GetMaterial("plastic");
+  //Material = scintProp->GetMaterial("plastic");
+  Material = scintProp->GetMaterial("mylar");
+  //Material = scintProp->GetMaterial("Polyester");
 
   G4VSolid* solid = new G4Tubs("SourceHolder",0., SourceHolderRadius,SourceHolderThickness/2.,0.,360.*deg);
   LogicalVolume = new G4LogicalVolume(solid, Material,"SourceHolder");
+
+  return LogicalVolume;
+}
+
+
+G4LogicalVolume *Geometry::GetSourcePlastic(){
+
+  //Material = scintProp->GetMaterial("plastic");
+  Material = scintProp->GetMaterial("mylar");
+  //Material = scintProp->GetMaterial("Polyester");
+
+  G4VSolid* solid = new G4Tubs("SourceHolder", SourceHolderRadius, 12.5*mm, 1.5*mm,0.,360.*deg);
+  LogicalVolume = new G4LogicalVolume(solid, Material,"SourceHolder");
+
+  return LogicalVolume;
+}
+
+
+G4LogicalVolume *Geometry::GetMylar(){
+
+  Material = scintProp->GetMaterial("mylar");
+
+  G4Box *Box = new G4Box   ("Box",             //its name
+            IPLength/2, IPWidth/2, 125./2.*um);    //its size
+
+  LogicalVolume = new G4LogicalVolume(Box, Material,"Mylar");
 
   return LogicalVolume;
 }

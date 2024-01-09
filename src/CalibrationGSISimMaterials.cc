@@ -180,7 +180,8 @@ void CalibrationGSISimMaterials::Construct()
 	//#######################################################################################################################################
 	//#######################################################################################################################################
 
-	Sensitive = new G4Material("Sensitive", 3.31*g/cm3, 7);
+	Sensitive = new G4Material("Sensitive", 3.31*g/cm3, 7); // MS
+	//Sensitive = new G4Material("Sensitive", 2.85*g/cm3, 7); // TR
 	Sensitive->AddElement(elementC, 0.127);
 	Sensitive->AddElement(elementH, 0.016);
 	Sensitive->AddElement(elementO, 0.042);
@@ -267,7 +268,7 @@ void CalibrationGSISimMaterials::Construct()
 	//#######################################################################################################################################
 	//#######################################################################################################################################
 
-	mylar = new G4Material("mylar", 1.40*g/cm3, 3);
+	mylar = new G4Material("mylar", 1.43*g/cm3, 3); //1.43
 	mylar->AddElement(elementH, 4);
 	mylar->AddElement(elementC, 5);
 	mylar->AddElement(elementO, 2);
@@ -298,7 +299,7 @@ void CalibrationGSISimMaterials::Construct()
 	//#######################################################################################################################################
 	//#######################################################################################################################################
 
-	plastic = new G4Material("plastic", 0.96*g/cm3, 2,	kStateSolid);
+	plastic = new G4Material("plastic", 1.4*g/cm3, 2,	kStateSolid); //0.96
 	plastic->AddElement( elementH, 4 );
 	plastic->AddElement( elementC, 2 );
 

@@ -1,6 +1,9 @@
 /tracking/verbose 0
 /run/verbose 1
 /run/printProgress 100000
+/process/em/auger true
+#/process/em/pixe true
+/process/em/fluo true
 
 /run/initialize
 
@@ -11,11 +14,12 @@
 ### PART TO SIMULATE PARTICLE WITH GPS (no setgun) ###
 ######################################################
 /gps/number 1
-/gps/particle e-
-/gps/pos/type Point
-/gps/pos/centre 0.0 0.0 -100 mm
-/gps/energy 100 MeV
-/gps/direction 0.0 0.0 1.0
+#/gps/particle e-
+#/gps/pos/type Point
+#/gps/pos/centre 0.0 0.0 1.88 mm
+#/gps/pos/centre 0.0 0.0 0.522 mm
+/gps/energy 0 MeV
+#/gps/direction 0.0 0.0 1.0
 #/gps/ang/type iso
 
 #/gps/ene/type Arb
@@ -23,8 +27,21 @@
 #/gps/hist/file Spectre_scan08_2.txt
 #/gps/hist/inter Lin
 
-#/gps/particle ion
+/gps/pos/type Plane
+/gps/pos/shape Circle
+#/gps/pos/centre 0.0 0.0 1.894 mm #MS GSI
+#/gps/pos/centre 0.0 0.0 1.88 mm #TR GSI
+#/gps/pos/centre 0.0 0.0 2.505 mm #TR EGSA
+/gps/pos/centre 0.0 0.0 2.005 mm #MS EGSA
+#/gps/pos/centre 0.0 0.0 2.544 mm #MS EGSA epaisseur 150um
+#/gps/pos/centre 0.0 0.0 2.529 mm #MS EGSA epaisseur 200um
+/gps/pos/radius 1.5 mm
+
+/gps/particle ion
+#/gps/ion 27 60 0 0
 #/gps/ion 27 57 0 0
+/gps/ion 55 137 0 0
+#/gps/ion 11 22 0 0
 #/gps/energy 0 MeV
 #/grdm/nucleusLimits 60 60 27 27
 

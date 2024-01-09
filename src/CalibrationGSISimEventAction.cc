@@ -36,19 +36,20 @@ void CalibrationGSISimEventAction::BeginOfEventAction(const G4Event* evt){
 
   //G4cout << "EVENT : " << event_id << G4endl;
 
-  Statistics.IncidentE = 0;
-  Statistics.Deposit = 0;
-  Statistics.Deposit_with_resolution = 0;
-  Statistics.EBremCreation.clear();
-  Statistics.EBremPlaque.clear();
-  Statistics.ENeutronCreation.clear();
-  Statistics.ENeutronPlaque.clear();
-  Statistics.Interaction = 0;
-  Statistics.EgammaCreation.clear();
-  Statistics.EgammaDeposit.clear();
-  Statistics.EelecCreation.clear();
-  Statistics.EelecDeposit.clear();
-  Statistics.PositionDeposit.clear();
+  Statistics.IncidentElectron.clear();
+  Statistics.IncidentGamma.clear();
+  if(event_id==0)
+  {
+    Statistics.DepositTot = 0;
+    Statistics.DepositEffTot = 0;
+  }
+  //Statistics.Deposit = 0;
+  //Statistics.DepositEff = 0;
+  Statistics.Deposit.clear();
+  Statistics.DepositEff.clear();
+  Statistics.PositionX.clear();
+  Statistics.PositionY.clear();
+  Statistics.PositionZ.clear();
 
 }
 
@@ -71,9 +72,9 @@ void CalibrationGSISimEventAction::EndOfEventAction(const G4Event* evt){
   //if(Statistics.PositionDeposit.size() >0) runac->UpdateStatistics(Statistics);
 
 
-  if(Statistics.EBremCreation.size()>0)
+  //if(Statistics.EBremCreation.size()>0)
   // if(Statistics.Interaction !=0)
-  {
-   runac->UpdateStatistics(Statistics);
-  }
+  //{
+  runac->UpdateStatistics(Statistics);
+  //}
 }
