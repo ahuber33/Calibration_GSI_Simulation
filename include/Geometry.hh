@@ -32,6 +32,8 @@ public:
   G4LogicalVolume *GetMSStack4();
   G4LogicalVolume *GetTable();
   G4LogicalVolume *GetSourceHolder();
+  G4LogicalVolume *GetSourcePlastic();
+  G4LogicalVolume *GetMylar();
 
 
   G4double GetSourceHolderRadius(){return SourceHolderRadius;}

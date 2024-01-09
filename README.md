@@ -13,22 +13,28 @@
 # - theRunTree contains all datas about gamma from bremsstrahlung (creation and a the exit of the steel plate), neutrons from (gamma, n) process (creation and a the exit of the steel plate)corresponds to general optical datas from 1 event (number of photons generated, ect). You have also the information about the initial energy of the electron and the energy deposition in to the steel plate.
 # - DO NOT HESITATE TO REPORT BUGS OR ANY IDEAS THAT WILL IMPROVE THE SIMULATION !!!!
 
+# Commit #1 [CalibrationGSISim.0.1.0]
+# - Passage du code sur la version 11.2.0 de GEANT4
+# - Passage de Atom vers Visual Code Studio avec notamment création d'une branche save permettant de push les changements d'une journée avant demerge sur la branche principale
+
+# PAST COMMITS FROM THE ORIGINAL CODE !!!
+
 # Commit #1 [ENLegnSim.0.0.0]
 # - Structure from ENLOpticalSim with a lot of code cleaning (all the optical part).
 # - Add of photon nuclear process for gammas (process g,n)
 # - Add of NeutronHPphysics
 # - Creation of vectors in the ROOT Tree to obtain all datas about gammas and neutrons for each events
 
-#commit #2 [ENLegnSim.0.0.1]
+# commit #2 [ENLegnSim.0.0.1]
 # - Cleaning of vis.mac and vmrl.mac
 # - Add a condition for the datas integration -> ROOT files too fat due to IncidentE and deposit if you want information on neutron with stat
 
-#commit #3 [ENLegnSim.0.0.2] le 24/03/2022
+# commit #3 [ENLegnSim.0.0.2] le 24/03/2022
 # - Add of INL cross sections data from different materials in order ton plot and compare with simulation. OK even is accuracy can be better with utilisation of LEND DATA.
 # - Add some materials (Pb, W)
 # - Add new geometries for studies with more than 1 plate
 
-#commit #4 [ENLegnSim.0.0.3] le 20/07/2022
+# commit #4 [ENLegnSim.0.0.3] le 20/07/2022
 # - All the data files for cross section (ENDF, JENDL, ...) commit.
 # - Ajout du matériau Silicon
 # - Ajout d'une branche interaction pour connaitre les interactions liés aux gammas (utilisé lors du stage de Samuel Lecanuet pour comparaison).

@@ -64,6 +64,7 @@ private:
   G4LogicalVolume *LogicalIP4;
   G4LogicalVolume *LogicalTable;
   G4LogicalVolume *LogicalSourceHolder;
+  G4LogicalVolume *LogicalSourcePlastic;
 
 
   // Physical volumes
@@ -74,6 +75,8 @@ private:
   G4VPhysicalVolume *PhysicalIP4;
   G4VPhysicalVolume *PhysicalTable;
   G4VPhysicalVolume *PhysicalSourceHolder;
+  G4VPhysicalVolume *PhysicalSourcePlastic;
+
 
 
   G4double SourceHolderThickness;

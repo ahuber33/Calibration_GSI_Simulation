@@ -21,19 +21,17 @@ class G4Event;
 
 //This struct carries statistics for the whole Run
 struct RunTally {
-  float  IncidentE;
-  float  Deposit;
-  float  Deposit_with_resolution;
-  std::vector<float> EBremCreation;
-  std::vector<float> EBremPlaque;
-  std::vector<float> ENeutronCreation;
-  std::vector<float> ENeutronPlaque;
-  std::vector<float> EgammaCreation;
-  std::vector<float> EgammaDeposit;
-  std::vector<float> EelecCreation;
-  std::vector<float> EelecDeposit;
-  std::vector<float> PositionDeposit;
-  int Interaction;
+  std::vector<float> IncidentElectron;
+  std::vector<float> IncidentGamma;
+    //float  Deposit;
+    //float  DepositEff;
+  float DepositTot;
+  float DepositEffTot;
+  std::vector<float> Deposit;
+  std::vector<float> DepositEff;
+  std::vector<float> PositionX;
+  std::vector<float> PositionY;
+  std::vector<float> PositionZ;
 
   inline int operator ==(const RunTally& right) const
   {return (this==&right);}
@@ -50,19 +48,23 @@ public:
 public:
   void BeginOfEventAction(const G4Event*);
   void EndOfEventAction(const G4Event*);
-  void AddEdep(G4float edep){Statistics.Deposit+=edep;}
-  void SetIncidentE(G4float e){Statistics.IncidentE =e;}
-  void SetInteraction(G4int e){Statistics.Interaction =e;}
-  G4float GetIncidentE(){return Statistics.IncidentE;}
-  void FillEBremCreation(G4float e){Statistics.EBremCreation.push_back(e);}
-  void FillEBremPlaque(G4float e){Statistics.EBremPlaque.push_back(e);}
-  void FillENeutronCreation(G4float e){Statistics.ENeutronCreation.push_back(e);}
-  void FillENeutronPlaque(G4float e){Statistics.ENeutronPlaque.push_back(e);}
-  void FillEGammaCreation(G4float e){Statistics.EgammaCreation.push_back(e);}
-  void FillEGammaDeposit(G4float e){Statistics.EgammaDeposit.push_back(e);}
-  void FillEElecCreation(G4float e){Statistics.EelecCreation.push_back(e);}
-  void FillEElecDeposit(G4float e){Statistics.EelecDeposit.push_back(e);}
-  void FillPositionDeposit(G4float e){Statistics.PositionDeposit.push_back(e);}
+
+  void FillIncidentElectron(G4float e){Statistics.IncidentElectron.push_back(e);}
+  void FillIncidentGamma(G4float e){Statistics.IncidentGamma.push_back(e);}
+  //void AddEdep(G4double edep){Statistics.Deposit+=edep;}
+  //G4double GetEdep(){return Statistics.Deposit;}
+  //void AddEdepEff(G4double edep){Statistics.DepositEff+=edep;}
+  //G4double GetEdepEff(){return Statistics.DepositEff;}
+  void AddEdepTot(G4double edep){Statistics.DepositTot+=edep;}
+  void AddEdepEffTot(G4double edep){Statistics.DepositEffTot+=edep;}
+  G4double GetEdepTot(){return Statistics.DepositTot;}
+  G4double GetEdepEffTot(){return Statistics.DepositEffTot;}
+  void FillEdep(G4float e){Statistics.Deposit.push_back(e);}
+  void FillEdepEff(G4float e){Statistics.DepositEff.push_back(e);}
+  void FillPositionX(G4float e){Statistics.PositionX.push_back(e);}
+  void FillPositionY(G4float e){Statistics.PositionY.push_back(e);}
+  void FillPositionZ(G4float e){Statistics.PositionZ.push_back(e);}
+
 
 private:
 
